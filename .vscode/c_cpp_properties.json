@@ -1,0 +1,23 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/usr/local/Caskroom/miniforge/base/envs/humble/include/**",
+        "/Users/amoralesma/Documents/projects/labsir-un/abb_ws/src/abb_un_driver/abb_egm_rws_managers/include/**",
+        "/Users/amoralesma/Documents/projects/labsir-un/abb_ws/src/abb_un_driver/abb_libegm/include/**",
+        "/Users/amoralesma/Documents/projects/labsir-un/abb_ws/src/abb_un_driver/abb_librws/include/**",
+        "/Users/amoralesma/Documents/projects/labsir-un/abb_ws/src/abb_un_driver/abb_robot_driver/abb_egm_hardware_interface/include/**",
+        "/Users/amoralesma/Documents/projects/labsir-un/abb_ws/src/abb_un_driver/abb_robot_driver/abb_egm_state_controller/include/**",
+        "/Users/amoralesma/Documents/projects/labsir-un/abb_ws/src/abb_un_driver/abb_robot_driver/abb_robot_cpp_utilities/include/**",
+        "/Users/amoralesma/Documents/projects/labsir-un/abb_ws/src/abb_un_driver/abb_robot_driver/abb_rws_service_provider/include/**",
+        "/Users/amoralesma/Documents/projects/labsir-un/abb_ws/src/abb_un_driver/abb_robot_driver/abb_rws_state_publisher/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}
