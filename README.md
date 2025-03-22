@@ -5,8 +5,49 @@ Para el control de los ABB con ROS, existen dos grandes métodos de comunicació
 
 * **abb_driver:** Comunicación via custom sockets. Se abre un web socket desde el controlador con RAPID, y desde el PC, via PC_interface accedemos al socket para hacer el parseo de datos a nodos de ros
 * **abb_robot_driver:** Usa el Robot Web Services (RWS) para sustituir los websockets, y con protocolo TCP/IP se habilita una API REST que permite lectura/escritura de los estados del motor. 
+* 
 ### ABB Driver
-Se encuentra en el repositorio. Tiene 6 archivos de RAPID (3 .mod y 3.sys) que deben ser cargados y asignados para ejecución al inicio del controlador. Estos son los encargados de construir los sockets para la comunicación 
+Se encuentra en el [repositorio](https://github.com/ros-industrial/abb_driver). Tiene 6 archivos de RAPID (3 .mod y 3.sys) que deben ser cargados y asignados para ejecución al inicio del controlador. Estos son los encargados de construir los sockets para la comunicación 
+
+> Para el caso de LabSIR UN, al tener un IRC5 con RW5, es la única opción para una conexión directa con el IRB desde ROS via Sockets 
+
+#### Sockets TCP/IP
+El driver monta un servidor TCP/IP en el conrolador del robot. Se requiere la opción de `PC-Interface` para que se pueda conectar via LAN con el computador 
+
+### Getting started
+#### Instalación de modulos en el controlador 
+
+La instalación de los modulos en el pendant, la asignación de señales y la carga automática de los modulos en el controlador puede revisarse en este tutorial 
+
+https://wiki.ros.org/abb_driver/Tutorials/InstallServer
+
+
+> [!NOTE] Revisión de tutoriales
+> Existen dos versiones del ABB Driver. EL ABB Driver y el ABB Robot Driver. Este ultimo requiere de los Robot Web Services (RWS) para funcionar. En nuestro caso, al no tener la licencia para optar por este modulo, se usará el antiguo ABB Driver basado en WebSockets para interactuar con el robot 
+
+
+### Conexión de Red 
+
+Para conectar ambos dispositivos (Controlador y PC), se debe conectar directamente al puerto LAN (No puerto de servicio) del controlador. Este se encuentro dentro del gabinete en la parte superior (Ver diagrama de conexión en el controlador). 
+
+Si al hacer ping a la IP estática que aparece en el FlexPendant (System info > Controller propertis > Network Connections > Lan), no muestra una conexión exitosa, se debe modificar la interfaz de conexíon Ethernet para que se encuentre en la misma máscara de sub red y en el alcance del controlador. 
+
+```bash
+ping <robot-ip> 
+```
+
+En el caso de Macos, basta con entrar a configuraciones de red, elegir la interfaz de Ethernet usada, y cambiar a IPv4 Manual, asignando una IP similar a la del IRC5 y la misma máscara de subred. 
+
+En la carpeta `\test` se puede ejecutar el archivo `simple_sock_conn.py`. 
+
+```bash 
+python test/simple_sock_connectoin.py <robot-ip>
+```
+
+
+
+
+
 
 ### ABB Robot Driver 
 Cuenta con 3 categorías. [Robot Driver](https://github.com/ros-industrial/abb_robot_driver)
